@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './form.module.css';
 import axios from 'axios';
+import DisplayList from '../display-list';
+
+interface ProductListProps {
+  name: string;
+  quantity: string;
+  price: string;
+  _id: string;
+}
 
 const ProductForm = () => {
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
+  const [data, setData] = React.useState<ProductListProps[]>([]);
+
+  console.log('dta', data);
 
   const addData = async (e: any) => {
     e.preventDefault();
@@ -23,6 +34,19 @@ const ProductForm = () => {
       console.log(error);
     }
   };
+  const getData = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/product/read');
+
+      setData(response.data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div>
@@ -67,6 +91,18 @@ const ProductForm = () => {
         <br></br>
         <button type="submit">Submit</button>
       </form>
+
+      <div>
+        {data.map((el, index) => (
+          <DisplayList
+            key={index}
+            name={el.name}
+            quantity={el.quantity}
+            price={el.price}
+            id={el._id}
+          />
+        ))}
+      </div>
     </div>
   );
 };

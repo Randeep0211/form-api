@@ -1,13 +1,17 @@
 import React from 'react';
 import ProductForm from '../../components/product-form';
-import ProductList from '../../components/product-list';
+import UpdateForm from '../../components/update-form';
+
 import { Routes, Route } from 'react-router-dom';
 
 const Homepage = () => {
   return (
     <div>
-      <ProductForm />
-      <ProductList />
+      <Routes>
+        <Route path="/" element={<ProductForm />} />
+
+        <Route path="/update" element={<UpdateForm />} />
+      </Routes>
     </div>
   );
 };
