@@ -10,7 +10,7 @@ const Homepage = () => {
       <Routes>
         <Route path="/" element={<ProductForm />} />
 
-        <Route path="/update" element={<UpdateForm />} />
+        <Route path="/update/:id" element={<UpdateForm />} />
       </Routes>
     </div>
   );

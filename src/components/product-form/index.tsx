@@ -50,7 +50,7 @@ const ProductForm = () => {
 
   return (
     <div>
-      <form className={styles.form} onSubmit={addData}>
+      <form className={styles.form}>
         <div>
           <label>Name:</label>
           <input
@@ -89,7 +89,9 @@ const ProductForm = () => {
         </div>
 
         <br></br>
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={addData}>
+          Submit
+        </button>
       </form>
 
       <div>
@@ -100,6 +102,7 @@ const ProductForm = () => {
             quantity={el.quantity}
             price={el.price}
             id={el._id}
+            onDelete={getData}
           />
         ))}
       </div>

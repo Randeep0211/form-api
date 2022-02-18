@@ -1,29 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation, Location } from 'react-router-dom';
-import { kStringMaxLength } from 'buffer';
-import { stringify } from 'querystring';
+import { useParams } from 'react-router-dom';
 
 interface FormProps {
   name: string;
   quantity: string;
   price: string;
+  id: string;
 }
 
 const UpdateForm = () => {
   const [name, setName] = useState('');
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
-  const data: Location = useLocation();
 
-  // console.log(data.state.id);
+  // const data = useLocation();
+  const data = useParams();
 
-  const id = '620cacbc6275c9d9b564fe6a';
+  // console.log(data);
 
-  const updateData = async (e: any) => {
-    // e.preventDefault();
+  const id = data.id;
+
+  const updateData = async () => {
     try {
-      const update = await axios.put(
+      const update: React.FC<FormProps> = await axios.put(
         `http://localhost:4000/product/update/${id}`,
         {
           name,
@@ -31,10 +32,15 @@ const UpdateForm = () => {
           price,
         }
       );
+
+      console.log(update);
+
+      console.log(update);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div>
       <form onSubmit={updateData}>
