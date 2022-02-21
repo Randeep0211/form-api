@@ -34,8 +34,6 @@ const UpdateForm = () => {
       );
 
       console.log(update);
-
-      console.log(update);
     } catch (error) {
       console.log(error);
     }

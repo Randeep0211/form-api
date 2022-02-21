@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './form.module.css';
 import axios from 'axios';
 import DisplayList from '../display-list';
+import { useNavigate } from 'react-router-dom';
 
 interface ProductListProps {
   name: string;
@@ -15,8 +16,9 @@ const ProductForm = () => {
   const [quantity, setQuantity] = useState('');
   const [price, setPrice] = useState('');
   const [data, setData] = React.useState<ProductListProps[]>([]);
+  const navigate = useNavigate();
 
-  console.log('dta', data);
+  console.log('data', data);
 
   const addData = async (e: any) => {
     e.preventDefault();
@@ -92,6 +94,18 @@ const ProductForm = () => {
         <button type="submit" onClick={addData}>
           Submit
         </button>
+        <br></br>
+        <div>
+          <button
+            type="submit"
+            className={styles.filterButton}
+            onClick={() => {
+              navigate(`/filter`);
+            }}
+          >
+            Filter
+          </button>
+        </div>
       </form>
 
       <div>

@@ -8,3 +8,8 @@ button {
 button:hover {
   background-color: green;
 }
+
+.filterButton {
+  display: flex;
+  justify-content: flex-end;
+}
